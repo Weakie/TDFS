@@ -1,36 +1,33 @@
 package com.weakie.global;
 
 import java.io.IOException;
-import java.net.ServerSocket;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import com.weakie.listener.SocketDispatcher;
 
 public class Initialize {
-
-	private ServerSocket listen;
-	private int listenPort;
+	private static Initialize instance = new Initialize();
+	private ExecutorService excutor;
+	private SocketDispatcher dispatcher;
 	
-	public static Initialize instance = new Initialize();
 	private Initialize(){};
-	
 	public static Initialize getInstance(){
 		return instance;
 	}
 	
 	public void startup() throws IOException{
-		listen = new ServerSocket(listenPort);
-		//Socket socket = listen.accept();
+		this.dispatcher = new SocketDispatcher();
+		this.dispatcher.initialize(10031);
+		this.excutor = Executors.newFixedThreadPool(1);
+		this.excutor.execute(dispatcher);
 		System.out.println("startup ");
 	}
 	
 	public void shutdown() throws IOException{
-		listen.close();
+		this.dispatcher.destroy();
+		this.excutor.shutdown();
 		System.out.println("shutdown ");
 	}
 	
-	public int getListenPort(){
-		return this.listenPort;
-	}
-	
-	public void setListenPort(int port){
-		this.listenPort = port;
-	}
 }
