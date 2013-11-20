@@ -4,15 +4,12 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
 
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+	<!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver">
 		</property>
 		<property name="url" value="jdbc:mysql://localhost:3306/test"></property>
 		<property name="username" value="root"></property>
 		<property name="password" value="123"></property>
-
-
-
 	</bean>
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
@@ -35,22 +32,24 @@
 			</list>
 		</property>
 	</bean>
-	<bean id="baseDAO" class="org.login.dao.Impl.BaseDAO">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory" />
+	 -->
+	<bean id="socketDispatcher" class="com.weakie.listener.SocketDispatcher"></bean>
+
+	<bean id="initialize" class="com.weakie.initialize.Initialize">
+		<property name="dispatcher">
+			<ref bean="socketDispatcher" />
 		</property>
 	</bean>
-
-	<bean id="userDAO" class="org.login.dao.Impl.UsersDAO" parent="baseDAO"></bean>
-	<bean id="userService" class="org.login.service.Impl.UsersService">
+	<!-- <bean id="userService" class="org.login.service.Impl.UsersService">
 		<property name="userDAO">
 			<ref bean="userDAO" />
 		</property>
 	</bean>
-
-	<bean id="login" class="org.login.actions.Login" scope="prototype">
+ -->
+	<!-- <bean id="login" class="org.login.actions.Login" scope="prototype" parent="baseDAO">
 		<property name="userService">
 			<ref bean="userService" />
 		</property>
 	</bean>
+	 -->
 </beans>

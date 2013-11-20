@@ -4,6 +4,7 @@
 	<!-- The value of a property is accessed via ${} -->
 	<property name="src.dir" location="src" />
 	<property name="lib.dir" location="WebContent/WEB-INF/lib" />
+	<property name="spring.dir" location="spring-beans" />
 	<property name="build.dir" location="build/classes" />
 	<property name="dist.dir" location="dist" />
 	<property name="web-xml-file" value="WebContent/WEB-INF/web.xml" />
@@ -37,8 +38,8 @@
 
 	<!-- Compiles the java code (including the usage of library for JUnit -->
 	<target name="compile" depends="clean, makedir">
-		<javac srcdir="${src.dir}" destdir="${build.dir}" classpathref="build.classpath">
-		</javac>
+		<javac srcdir="${src.dir}" destdir="${build.dir}" classpathref="build.classpath" includeantruntime="on" />
+		<copy file="${spring.dir}/applicationContext.xml" todir="${build.dir}"  overwrite="true"  />
 	</target>
 
 	<!--Creates the deployable war file  -->
