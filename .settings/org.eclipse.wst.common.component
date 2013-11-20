@@ -2,6 +2,7 @@
     <wb-module deploy-name="TDFS">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/spring-beans"/>
         <property name="context-root" value="TDFS"/>
         <property name="java-output-path" value="/TDFS/build/classes"/>
     </wb-module>
