@@ -40,6 +40,8 @@
 			<ref bean="socketDispatcher" />
 		</property>
 	</bean>
+	<bean id="executor" class="com.weakie.initialize.Initialize" />
+	<bean id="executorFactory" class="com.weakie.factory.ThreadPoolFactory" />
 	<!-- <bean id="userService" class="org.login.service.Impl.UsersService">
 		<property name="userDAO">
 			<ref bean="userDAO" />
