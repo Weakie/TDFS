@@ -33,21 +33,36 @@
 		</property>
 	</bean>
 	 -->
+	<bean id="executorFactory" class="com.weakie.factory.ThreadPoolFactory" />
+	<!-- https://jira.springsource.org/browse/IDE-122?page=com.atlassian.jira.plugin.system.issuetabpanels%3Achangehistory-tabpanel -->
+	<!-- http://forum.spring.io/forum/spring-projects/container/48256-using-factory-beans-with-factory-method-parameters -->
+	<bean id="executor" factory-bean="executorFactory" factory-method="newFixedThreadPool">
+		<!-- <constructor-arg type="java.lang.String" value="config.properties"/>
+		<constructor-arg><ref bean="anotherExampleBean"/></constructor-arg>
+  		<constructor-arg><ref bean="yetAnotherBean"/></constructor-arg> -->
+  		<!-- <constructor-arg type="int" value="1" /> -->
+	</bean>
+	
 	<bean id="socketDispatcher" class="com.weakie.listener.SocketDispatcher"></bean>
 
 	<bean id="initialize" class="com.weakie.initialize.Initialize">
 		<property name="dispatcher">
 			<ref bean="socketDispatcher" />
 		</property>
+		<property name="executor">
+			<ref bean="executor" />
+		</property>
 	</bean>
-	<bean id="executor" class="com.weakie.initialize.Initialize" />
-	<bean id="executorFactory" class="com.weakie.factory.ThreadPoolFactory" />
-	<!-- <bean id="userService" class="org.login.service.Impl.UsersService">
+	
+	
+	
+	<!--
+	<bean id="userService" class="org.login.service.Impl.UsersService">
 		<property name="userDAO">
 			<ref bean="userDAO" />
 		</property>
 	</bean>
- -->
+ 	-->
 	<!-- <bean id="login" class="org.login.actions.Login" scope="prototype" parent="baseDAO">
 		<property name="userService">
 			<ref bean="userService" />

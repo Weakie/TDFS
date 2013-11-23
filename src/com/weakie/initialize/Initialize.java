@@ -2,14 +2,13 @@ package com.weakie.initialize;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import com.weakie.global.SpringBeanUtil;
 import com.weakie.listener.SocketDispatcher;
 
 public class Initialize {
 	private static Initialize instance;
-	private ExecutorService excutor;
+	private ExecutorService executor;
 	private SocketDispatcher dispatcher;
 	
 	public Initialize(){};
@@ -28,14 +27,13 @@ public class Initialize {
 	
 	public void startup() throws IOException{
 		this.dispatcher.initialize(10031);
-		this.excutor = Executors.newFixedThreadPool(1);
-		this.excutor.execute(dispatcher);
+		this.executor.execute(dispatcher);
 		System.out.println("startup ");
 	}
 	
 	public void shutdown() throws IOException{
 		this.dispatcher.destroy();
-		this.excutor.shutdown();
+		this.executor.shutdown();
 		System.out.println("shutdown ");
 	}
 	
@@ -44,6 +42,14 @@ public class Initialize {
 	}
 	public void setDispatcher(SocketDispatcher dispatcher) {
 		this.dispatcher = dispatcher;
+	}
+
+	public ExecutorService getExecutor() {
+		return executor;
+	}
+
+	public void setExecutor(ExecutorService excutor) {
+		this.executor = excutor;
 	}
 	
 }
