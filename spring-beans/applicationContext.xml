@@ -4,6 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
 
+	<import resource="spring-bean-threadpool.xml"/>
 	<!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver">
 		</property>
@@ -33,15 +34,6 @@
 		</property>
 	</bean>
 	 -->
-	<bean id="executorFactory" class="com.weakie.factory.ThreadPoolFactory" />
-	<!-- https://jira.springsource.org/browse/IDE-122?page=com.atlassian.jira.plugin.system.issuetabpanels%3Achangehistory-tabpanel -->
-	<!-- http://forum.spring.io/forum/spring-projects/container/48256-using-factory-beans-with-factory-method-parameters -->
-	<bean id="executor" factory-bean="executorFactory" factory-method="newFixedThreadPool">
-		<!-- <constructor-arg type="java.lang.String" value="config.properties"/>
-		<constructor-arg><ref bean="anotherExampleBean"/></constructor-arg>
-  		<constructor-arg><ref bean="yetAnotherBean"/></constructor-arg> -->
-  		<!-- <constructor-arg type="int" value="1" /> -->
-	</bean>
 	
 	<bean id="socketDispatcher" class="com.weakie.listener.SocketDispatcher"></bean>
 

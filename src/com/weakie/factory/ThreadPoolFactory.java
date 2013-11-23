@@ -5,7 +5,16 @@ import java.util.concurrent.Executors;
 
 public class ThreadPoolFactory {
 
-	public static ExecutorService newFixedThreadPool(){
-		return Executors.newFixedThreadPool(1);
+	//private static ThreadPoolFactory instance = new ThreadPoolFactory();
+	
+	//private ThreadPoolFactory(){}
+	/*
+	public static ThreadPoolFactory getInstance(int i){
+		return instance;
+	}
+	*/
+	
+	public ExecutorService newFixedThreadPool(int poolSize){
+		return Executors.newFixedThreadPool(poolSize);
 	}
 }
