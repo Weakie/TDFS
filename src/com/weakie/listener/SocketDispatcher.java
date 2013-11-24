@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import com.weakie.util.log.LogUtil;
+
 public class SocketDispatcher implements Runnable {
 
 	private ServerSocket listen;
@@ -30,7 +32,8 @@ public class SocketDispatcher implements Runnable {
 
 	@Override
 	public void run() {
-		System.out.println("socket diapatcher running ");
+		LogUtil.info("socket diapatcher running.");
+		//System.out.println("socket diapatcher running ");
 		while (!stop) {
 			try {
 				Socket socket = listen.accept();
