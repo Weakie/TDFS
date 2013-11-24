@@ -4,7 +4,8 @@
 	<!-- The value of a property is accessed via ${} -->
 	<property name="src.dir" location="src" />
 	<property name="lib.dir" location="WebContent/WEB-INF/lib" />
-	<property name="spring.dir" location="spring-beans" />
+	<property name="config.dir" location="config" />
+	<property name="spring.dir" location="config/spring-beans" />
 	<property name="build.dir" location="build/classes" />
 	<property name="dist.dir" location="dist" />
 	<property name="web-xml-file" value="WebContent/WEB-INF/web.xml" />
