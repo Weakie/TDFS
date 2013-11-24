@@ -4,7 +4,7 @@
 		<Console name="Console" target="SYSTEM_OUT">
 			<PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level [%-20t] %logger{36} - %msg%n" />
 		</Console>
-		<RollingRandomAccessFile name="RollingRandomAccessFile" fileName="logs/app.log"
+		<RollingRandomAccessFile name="RollingRandomAccessFile" fileName="logs/TDFS.log"
                  filePattern="logs/$${date:yyyy-MM}/app-%d{yyyy-MM-dd-HH}-%i.log.gz">
       		<PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level [%-20t] %logger{36} - %msg%n" />
       		<Policies>
