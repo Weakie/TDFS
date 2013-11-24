@@ -5,6 +5,7 @@ import java.util.concurrent.ExecutorService;
 
 import com.weakie.global.SpringBeanUtil;
 import com.weakie.listener.SocketDispatcher;
+import com.weakie.util.log.LogUtil;
 
 public class Initialize {
 	private static Initialize instance;
@@ -28,13 +29,13 @@ public class Initialize {
 	public void startup() throws IOException{
 		this.dispatcher.initialize(10031);
 		this.executor.execute(dispatcher);
-		System.out.println("startup ");
+		LogUtil.info("startup ");
 	}
 	
 	public void shutdown() throws IOException{
 		this.dispatcher.destroy();
 		this.executor.shutdown();
-		System.out.println("shutdown ");
+		LogUtil.info("shutdown ");
 	}
 	
 	public SocketDispatcher getDispatcher() {

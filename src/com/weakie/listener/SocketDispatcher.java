@@ -18,7 +18,7 @@ public class SocketDispatcher implements Runnable {
 		this.listenPort = port;
 		this.stop = false;
 		this.listen = new ServerSocket(listenPort);
-		System.out.println("socket diapatcher listen to port: " + this.listenPort);
+		LogUtil.info("socket diapatcher listen to port: " + this.listenPort);
 	}
 
 	public void destroy() throws IOException {
@@ -33,15 +33,14 @@ public class SocketDispatcher implements Runnable {
 	@Override
 	public void run() {
 		LogUtil.info("socket diapatcher running.");
-		//System.out.println("socket diapatcher running ");
 		while (!stop) {
 			try {
 				Socket socket = listen.accept();
 				socket.getPort();
 			} catch (IOException e) {
-				e.printStackTrace();
+				LogUtil.error(e);
 			}
 		}
-		System.out.println("socket diapatcher closed ");
+		LogUtil.info("socket diapatcher closed. ");
 	}
 }

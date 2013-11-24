@@ -26,35 +26,30 @@ public class LogUtil {
 	}
 	
 	public static void error(Throwable t) {
-		Logger logger = getLogger(t);
+		Logger logger = getLogger();
 		logger.error(t);
 	}
 
 	public static void warn(Throwable t) {
-		Logger logger = getLogger(t);
+		Logger logger = getLogger();
 		logger.warn(t);
 	}
 
 	public static void info(Throwable t) {
-		Logger logger = getLogger(t);
+		Logger logger = getLogger();
 		logger.info(t);
 	}
 
 	public static void debug(Throwable t) {
-		Logger logger = getLogger(t);
+		Logger logger = getLogger();
 		logger.debug(t);
 	}
 	
 	private static Logger getLogger(){
 		Exception e = new Exception();
-		StackTraceElement element = e.getStackTrace()[1];
+		StackTraceElement element = e.getStackTrace()[2];
 		Logger logger = LogManager.getLogger(element.getClassName());
 		return logger;
 	}
 	
-	private static Logger getLogger(Throwable t){
-		StackTraceElement element = t.getStackTrace()[0];
-		Logger logger = LogManager.getLogger(element.getClassName());
-		return logger;
-	}
 }

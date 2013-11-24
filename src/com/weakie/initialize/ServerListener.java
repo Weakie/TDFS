@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+
+import com.weakie.util.log.LogUtil;
 /**
  * Application Lifecycle Listener implementation class Listener
  *
@@ -14,30 +16,30 @@ public final class ServerListener implements ServletContextListener {
      * Default constructor. 
      */
     public ServerListener() {
-    	System.out.println("new ServerListener");
+    	LogUtil.info("new ServerListener");
     }
 
 	public void contextDestroyed(ServletContextEvent arg0) {
 		String name = arg0.getServletContext().getServletContextName();
-		System.out.println("destroy "+name);
+		LogUtil.info("destroy "+name);
 		
 		Initialize instance = Initialize.getInstance();
 		try {
 			instance.shutdown();
 		} catch (IOException e) {
-			e.printStackTrace();
+			LogUtil.error(e);
 		}
 	}
 
 	public void contextInitialized(ServletContextEvent arg0) {
 		String name = arg0.getServletContext().getServletContextName();
-		System.out.println("initial "+name);
+		LogUtil.info("initial "+name);
 		
 		Initialize instance = Initialize.getInstance();
 		try {
 			instance.startup();
 		} catch (IOException e) {
-			e.printStackTrace();
+			LogUtil.error(e);
 		}
 	}
 	
