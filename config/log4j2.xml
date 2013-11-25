@@ -14,7 +14,7 @@
    		</RollingRandomAccessFile>
 	</appenders>
 	<loggers>
-		<Logger name="com.weakie" level="debug" additivity="true">
+		<Logger name="com.weakie" level="debug" additivity="false">
       		<AppenderRef ref="RollingRandomAccessFile"/>
       		<AppenderRef ref="Console" />
    		</Logger>
