@@ -36,10 +36,14 @@ public class FileListServlet extends HttpServlet {
 			dir = getServletContext().getInitParameter("baseDir");
 		}
 		File file = new File(dir);
-		File[] files = file.listFiles();
-		request.setAttribute("file", file);
-		request.setAttribute("files", files);
-		request.getRequestDispatcher("jsp/filelist.jsp").forward(request, response);
+		if(file.isDirectory()){
+			File[] files = file.listFiles();
+			request.setAttribute("file", file);
+			request.setAttribute("files", files);
+			request.getRequestDispatcher("jsp/filelist.jsp").forward(request, response);
+		}else{
+			//download the file
+		}
 	}
 
 	/**
