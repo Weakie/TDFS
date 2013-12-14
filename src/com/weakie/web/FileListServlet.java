@@ -42,7 +42,7 @@ public class FileListServlet extends HttpServlet {
 			request.setAttribute("files", files);
 			request.getRequestDispatcher("jsp/filelist.jsp").forward(request, response);
 		}else{
-			//download the file
+			request.getRequestDispatcher("FileReaderServlet?fileName="+dir).forward(request, response);
 		}
 	}
 
