@@ -45,8 +45,9 @@ public class FileReaderServlet extends HttpServlet {
 				LogUtil.error(e1);
 			}
 			LogUtil.info("download filename="+downloadName);
-			response.addHeader("Content-Dispostion", "attachment;filename=" + downloadName);
-			response.setContentType("application/octet-stream");
+			response.addHeader("Content-Disposition", "attachment; filename=\"" + downloadName+"\"");
+			response.setContentType("application/octet-stream;charset=GB18030");
+			//response.addHeader("Cache-control", "max-age=3600");
 			//response.setContentType("application/x-msdownload");
 			response.setContentLength((int)file.length());
 			BufferedInputStream bin = null;
