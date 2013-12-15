@@ -11,7 +11,7 @@
 	<property name="web-xml-file" value="WebContent/WEB-INF/web.xml" />
 	<property name="war-file-name" value="TDFS.war" />
 
-	<property name="tomcat.dir" value="~/apache-tomcat-6.0.37"/>
+	<property name="tomcat.dir" value="/home/syh/apache-tomcat-6.0.37"/>
 	<!-- other info -->
 	<property name="builder" value="Weakie" />
 	<tstamp prefix="build-info">
@@ -67,10 +67,10 @@
 
 	<target name="dist" depends="build">
 		<echo message="发布项目文件" />
-		<exec dir="${tomcat.dir}/bin" executable="/shutdown.sh" os="Linux" failonerror="true" />
+		<exec dir="${tomcat.dir}/bin" executable="./shutdown.sh" os="Linux" failonerror="true" />
 		<delete dir="${tomcat.dir}/webapps/TDFS" />
 		<copy file="${dist.dir}/${war-file-name}" todir="${tomcat.dir}/webapps" />
-		<exec dir="${tomcat.dir}/bin" executable="/startup.sh" os="Linux" failonerror="true" />
+		<exec dir="${tomcat.dir}/bin" executable="./startup.sh" os="Linux" failonerror="true" />
 		<echo message="完成发布文件" />
 	</target>
 	
